@@ -125,17 +125,52 @@
 
 //TUTORIAL 5
 //PART 2 of FILE SYSTEM MODULE (FOLDERS)
-
+//mkdir, unlink, rmdir, readdir
 const fs = require('fs');
-fs.mkdir('tutorial', (err)=>{
-  if(err)
-    console.log(err);
-  else
-    //console.log('successfully created the folder!');
-    fs.rmdir('tutorial', (err)=>{
-      if(err)
-        console.log(err);
-      else
-        console.log('Folder successfully deleted!');
-    })
-})
+// fs.mkdir('tutorial', (err)=>{
+//   if(err)
+//     console.log(err);
+//   else
+//     //console.log('successfully created the folder!');
+//     //Create a file into the newly created folder
+//     fs.writeFile('./tutorial/example.txt', '123', (err)=>{
+//       if(err)
+//         console.log(err);
+//       else
+//         console.log('Successfully created example.txt');
+//     });
+// });
+
+//Remove file from within a folder
+// fs.unlink('./tutorial/example.txt',(err)=>{
+//   if(err)
+//     console.log(err);
+//   else {
+//     console.log('Successfully deleted example.txt');
+//   }
+// });
+//
+// //Cannot remove folder with file in it
+// fs.rmdir('tutorial',(err)=>{
+//   if(err)
+//     console.log(err);
+//   else {
+//     console.log('Successfully deleted');
+//   }
+// });
+
+//Remove all files within a folder
+// fs.readdir('example',(err,files)=>{ //files is array with name of files
+//   if(err)
+//     console.log(err)
+//   else
+//     for(let file of files){
+//       fs.unlink('./example/' + file,(err)=>{
+//         if(err)
+//           console.log(err);
+//         else {
+//           console.log('successfully deleted ' + file);
+//         }
+//       })
+//     }
+// });
