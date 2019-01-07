@@ -126,7 +126,7 @@
 //TUTORIAL 5
 //PART 2 of FILE SYSTEM MODULE (FOLDERS)
 //mkdir, unlink, rmdir, readdir
-const fs = require('fs');
+// const fs = require('fs');
 // fs.mkdir('tutorial', (err)=>{
 //   if(err)
 //     console.log(err);
@@ -174,3 +174,43 @@ const fs = require('fs');
 //       })
 //     }
 // });
+
+//TUTORIAL 6
+//READ WRITE STREAM
+//WHY USE readStream OVER readFile?
+//e.g 3GB txt file.
+//readFile will give an error saying the file
+//size is greater than possible buffer
+
+//const fs = require('fs');
+// const readStream = fs.createReadStream('./example.txt', 'utf8');
+// const writeStream = fs.createWriteStream('example2.txt');
+// //event LISTENER
+// //why chunk?
+// //so that we can start writing while reading
+// //we dont have to finish reading to write
+// //into the new file(?)
+// readStream.on('data', (chunk)=>{
+//   //console.log(chunk);
+//   writeStream.write(chunk); //write to new file as read
+// });
+
+//TUTORIAL 7
+//PIPES AND CHAINING
+//Pipes allow streams to be sent to a destination
+//Pipes need Source(read) and Destination(write).
+// const fs = require('fs');
+
+//zlib is for compression of files
+// const zlib = require('zlib');
+
+//transform stream - takes input from read, then manipulates DATA
+//in this case is COMPRESS. (Makes a zip)
+//const gzip = zlib.createGzip();
+
+
+// const gunzip = zlib.createGunzip();
+// const readStream = fs.createReadStream('./example2.txt.gz');
+// const writeStream = fs.createWriteStream('uncompress.txt');
+// //Uncompress then write it
+// readStream.pipe(gunzip).pipe(writeStream);
