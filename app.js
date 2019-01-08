@@ -214,3 +214,63 @@
 // const writeStream = fs.createWriteStream('uncompress.txt');
 // //Uncompress then write it
 // readStream.pipe(gunzip).pipe(writeStream);
+
+//TUTORIAL 8
+//HTTP SERVER
+// const http = require('http');
+// const server = http.createServer((req, res)=>{
+//   if(req.url === '/'){
+//     res.write('Hello world from nodejs');
+//     res.end();
+//   } else {
+//     res.write('using some other domain');
+//     res.end();
+//   }
+// });
+//
+// server.on('listening',(err)=>{
+//     console.log('ok, server is running');
+// });
+//
+// server.listen(80);
+/*TO KILL A PORT/PROCESS ON WINDOWS AND SOLVE
+ "EADDRINUSE: :::80
+ open cmd:
+ netstat -ano
+ find the local address port and PID
+ then taskkill /f /im [PID]"*/
+
+ //TUTORIAL 9
+ //SERVE STATIC FILES USING HTTP AND FILE SYSTEM module
+ // const http = require('http');
+ // const fs = require('fs');
+ // http.createServer((req,res)=>{
+ //   const readStream = fs.createReadStream('./index.html');//Read file
+ //   res.writeHead(200, {'Content-type': 'text/html'});//Type of file read
+ //   readStream.pipe(res);//Pipe read data into response
+ // }).listen(3000);
+
+//TUTORIAL 10
+//CREATE PACKAGE.json using npn init
+//json file will hold all meta data for project. e.g name, version number etc
+//CMD: npm init
+//default name of package is name of folder, if so, [ENTER]
+//ENTRY POINT: Lets us know which file is used to start node application.
+//e.g website, upload to a server, it wil let server that it's the entry POINT
+
+//TUTORIAL 11
+//INSTALLING EXTERNAL PACKAGES AND INCLUDING IN OUR project
+//NODE PACKAGE MANAGER
+//PACKAGES: Reusable code that we can include in our own app, folder with one or more modules
+//Packages available at https://www.npmjs.com/
+//npn i [packagename]
+
+// const _ = require('lodash');
+// let example = _.fill([1,2,3,4,5], "banana", 0,5)//arg1: array, arg2, value, arg3:start index, arg4: end index
+// console.log(example);
+
+//uninstalling package
+//cmd: npm uninstall [packagename]
+
+//TUTORIAL 12
+//SEMANTIC VERSIONING

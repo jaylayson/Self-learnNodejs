@@ -1,0 +1,20 @@
+{
+  "name": "learnndejs",
+  "version": "1.0.0",
+  "description": "tutorial purposes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaylayson/learnNdejs.git"
+  },
+  "author": "john layson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaylayson/learnNdejs/issues"
+  },
+  "homepage": "https://github.com/jaylayson/learnNdejs#readme",
+  "dependencies": {}
+}
