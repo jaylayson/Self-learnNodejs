@@ -285,16 +285,16 @@
 
 //TUTORIAL 13
 //EXPRESS WEB FRAMEWORK
-const express = require('express');
+// const express = require('express');
 //express returns a function which returns object
-const app = express();
-app.get('/', (req,res)=>{
-  res.send('Hello World!');
-});//route, callback
+// const app = express();
+// app.get('/', (req,res)=>{
+//   res.send('Hello World!');
+// });//route, callback
 //QUERY STRINGS, ROUTE PARAMETERS
-app.get('/example',(req,res)=>{
-  res.send('hitting example route');
-});
+// app.get('/example',(req,res)=>{
+//   res.send('hitting example route');
+// });
 
 //returns an object, is printed in CMD
 //localhost:3000/example/jahn/99
@@ -310,10 +310,51 @@ app.get('/example',(req,res)=>{
 //when to use route parameter or query string parameter?
 //route parameter when you MUST have the data. e.g name
 //string parameter: optional e.g sorting
-app.get('/example/:name/:age',(req,res)=>{
-  console.log(req.params);
-  console.log(req.query);
-  res.send(req.params.name + ' | ' + req.params.age);
+// app.get('/example/:name/:age',(req,res)=>{
+//   console.log(req.params);
+//   console.log(req.query);
+//   res.send(req.params.name + ' | ' + req.params.age);
+// });
+//
+//
+// app.listen(3000);
+
+//TUTORIAL 14
+//SERVING STATIC FILES USING express
+//RESULTS: https://www.youtube.com/watch?v=RLtyhwFtXQA&t=2813s 1:53:40
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+//
+// app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
+// //dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
+// app.get('/',(req,res)=>{
+//   res.sendFile(path.join(__dirname, 'static', 'index.html'));
+// });
+// app.listen(3000);
+
+//TUTORIAL 15
+//HTTP POST REQUEST WITH express
+//BODY PARSER module
+//https://youtu.be/RLtyhwFtXQA?t=6876
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
+//dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
+//use module to parse the form data
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
+
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname, 'static', 'index.html'));
+
+app.post('/', (req,res)=>{
+  console.log(req.body);
+  //database work goes here
+  res.send('successfully posted data');
+})
 });
 
 
