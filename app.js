@@ -274,3 +274,47 @@
 
 //TUTORIAL 12
 //SEMANTIC VERSIONING
+//what changes have occured in package
+//4.17.11 major.minor.patch
+//patches implement bug fixes
+//minor - minor updates new functions. might deprecate old functions.
+//major - breaking change, not compatible  with previous major VERSION
+// ^4.17.11 - 4.x.x
+// ~4.17.11 - 4.17.x
+// 4.17.11 - only use 4.17.11 exactly
+
+//TUTORIAL 13
+//EXPRESS WEB FRAMEWORK
+const express = require('express');
+//express returns a function which returns object
+const app = express();
+app.get('/', (req,res)=>{
+  res.send('Hello World!');
+});//route, callback
+//QUERY STRINGS, ROUTE PARAMETERS
+app.get('/example',(req,res)=>{
+  res.send('hitting example route');
+});
+
+//returns an object, is printed in CMD
+//localhost:3000/example/jahn/99
+//cmd output: { name: 'jahn', age: '99' }
+// app.get('/example/:name/:age',(req,res)=>{
+//   console.log(req.params);
+//   res.send(req.params.name + ' | ' + re.params.age);
+// });
+
+//you can also send back QUERY STRING
+//localhost:3000/example/jahn/99?tutorial=paramstutorial
+//localhost:3000/example/jahn/99?tutorial=paramstutorial&sort=byage      //multiple queries
+//when to use route parameter or query string parameter?
+//route parameter when you MUST have the data. e.g name
+//string parameter: optional e.g sorting
+app.get('/example/:name/:age',(req,res)=>{
+  console.log(req.params);
+  console.log(req.query);
+  res.send(req.params.name + ' | ' + req.params.age);
+});
+
+
+app.listen(3000);
