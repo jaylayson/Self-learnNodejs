@@ -337,25 +337,97 @@
 //HTTP POST REQUEST WITH express
 //BODY PARSER module
 //https://youtu.be/RLtyhwFtXQA?t=6876
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+//
+// app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
+// //dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
+// //use module to parse the form data
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
+//
+// app.get('/',(req,res)=>{
+//   res.sendFile(path.join(__dirname, 'static', 'index.html'));
+//
+// app.post('/', (req,res)=>{
+//   console.log(req.body);
+//   //database work goes here
+//   res.send('successfully posted data');
+// })
+// });
+// app.listen(3000);
+
+
+//TUTORIAL 16
+//Working with JSON data with express and body parser
+//POST JSON data using jQuery AJAX
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+//
+// app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
+// //dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
+// //use module to parse the form data
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
+// app.use(bodyParser.json());//parse json and attach to req.body
+//
+// app.get('/',(req,res)=>{
+//   res.sendFile(path.join(__dirname, 'static', 'index.html'));
+//
+// app.post('/', (req,res)=>{
+//   console.log(req.body);
+//   //database work goes here
+//   res.json({success : true});
+// })
+// });
+// app.listen(3000);
+
+//NOTE: that the cmd output is serialized form data, and that its not JSON.
+//body parser sees it as JSON and converts it into JS object.
+
+//TUTORIAL 17
+//USER input validation with express and joi
+  //CREATE SCHEMA TO VALIDATE USER INPUT
+
 const express = require('express');
 const path = require('path');
 const app = express();
+const Joi = require('joi');
 
 app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
 //dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
 //use module to parse the form data
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
+//app.use(bodyParser.json());//parse json and attach to req.body
 
 app.get('/',(req,res)=>{
-  res.sendFile(path.join(__dirname, 'static', 'index.html'));
+  res.sendFile(path.join(__dirname, 'static', 'index.html')); //Serves form to user
 
-app.post('/', (req,res)=>{
+app.post('/', (req,res)=>{ //Get data from user
   console.log(req.body);
+  //CREATE SCHEMA TO VALIDATE USER INPUT
+  const schema =  Joi.object().keys({
+    email : Joi.string().trim().email().required(),
+    password : Joi.string().min(5).max(10).required() //min 5 chars, max 10
+  }); //blueprint. key value pairs
+  Joi.validate(req.body, schema, (err,result)=>{
+    if(err){
+      console.log(err);
+      res.send('an error has occured');
+    }else{
+    console.log(result);
+    res.send('successfully posted data');
+    }
+  })
   //database work goes here
-  res.send('successfully posted data');
+  //res.json({success : true});
 })
 });
-
-
 app.listen(3000);
+
+
+//TUTORIAL 18
+//USER input validation with express and joi PT 2

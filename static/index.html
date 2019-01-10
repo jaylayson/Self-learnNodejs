@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form action="/" method="POST">
+            <form action="/" method="POST" id="form">
               <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="email" class="form-control" name="email">
@@ -26,6 +26,28 @@
         </div>
         <div class="col-lg-4"></div>
       </div>
+      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!  -->
+      <!-- THIS SCRIPT IS USED FOR TUTORIAL 16 BUT NOT 17 -->
+      <!-- !!!!!!!!!!!!!!!!!!!!!!!!   -->
+        <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+        <!-- <script>
+          $(document).ready(()=>{
+            $('#form').submit((e)=>{ //GET our form, attach submit hander. (e) is for event handler
+              e.preventDefault(); //take the event, and call prevent default.
 
+              //use ajax to make post REQUEST, to POST JSON data to server
+              $.ajax({
+                url : '/', //end point of server
+                type : 'post', //HTTP request we make
+                contentType : 'application/json', //JSON content type
+                data : JSON.stringify($('#form').serializeArray()), //get actual form data to POST.
+                success : (response)=>{ //if server response is successful.
+                  console.log('successfully got response');
+                  console.log(response);
+                }
+              })
+            })
+          })
+        </script> -->
 </body>
 </html>
