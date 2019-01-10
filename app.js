@@ -391,43 +391,80 @@
 //USER input validation with express and joi
   //CREATE SCHEMA TO VALIDATE USER INPUT
 
-const express = require('express');
-const path = require('path');
-const app = express();
-const Joi = require('joi');
-
-app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
-//dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
-//use module to parse the form data
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
-//app.use(bodyParser.json());//parse json and attach to req.body
-
-app.get('/',(req,res)=>{
-  res.sendFile(path.join(__dirname, 'static', 'index.html')); //Serves form to user
-
-app.post('/', (req,res)=>{ //Get data from user
-  console.log(req.body);
-  //CREATE SCHEMA TO VALIDATE USER INPUT
-  const schema =  Joi.object().keys({
-    email : Joi.string().trim().email().required(),
-    password : Joi.string().min(5).max(10).required() //min 5 chars, max 10
-  }); //blueprint. key value pairs
-  Joi.validate(req.body, schema, (err,result)=>{
-    if(err){
-      console.log(err);
-      res.send('an error has occured');
-    }else{
-    console.log(result);
-    res.send('successfully posted data');
-    }
-  })
-  //database work goes here
-  //res.json({success : true});
-})
-});
-app.listen(3000);
-
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+// const Joi = require('joi');
+//
+// app.use('/public', express.static(path.join(__dirname, 'static')));//arg1 alias for static folder
+// //dirname is string, it will give us where app.js is, arg2 'static' name of folder to give alias
+// //use module to parse the form data
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({extended: false})); //allow parse url included forms
+// //app.use(bodyParser.json());//parse json and attach to req.body
+//
+// app.get('/',(req,res)=>{
+//   res.sendFile(path.join(__dirname, 'static', 'index.html')); //Serves form to user
+//
+// app.post('/', (req,res)=>{ //Get data from user
+//   console.log(req.body);
+//   //CREATE SCHEMA TO VALIDATE USER INPUT
+//   const schema =  Joi.object().keys({
+//     email : Joi.string().trim().email().required(),
+//     password : Joi.string().min(5).max(10).required() //min 5 chars, max 10
+//   }); //blueprint. key value pairs
+//   Joi.validate(req.body, schema, (err,result)=>{
+//     if(err){
+//       console.log(err);
+//       res.send('an error has occured');
+//     }else{
+//     console.log(result);
+//     res.send('successfully posted data');
+//     }
+//   })
+//   //database work goes here
+//   //res.json({success : true});
+// })
+// });
+// app.listen(3000);
+//
 
 //TUTORIAL 18
 //USER input validation with express and joi PT 2
+
+// const Joi = require('joi');
+//
+// const arrayString = ['banana','bacon','cheese'];
+// const arrayObjects = [{example: 'example1'},{example: 'example2'},{example: 'example2'}];
+//
+// const userInput = { personalInfo: {
+//                         streetAddress: '123987987',
+//                         city : 'kljlkajd',
+//                         state: 'fl'
+//                     },
+//                     preferences : arrayObjects};
+// //Create persnnalInfo SCHEMA
+// const personalInfoSchema = Joi.object().keys({
+//     streetAddress : Joi.string().trim().required(),
+//     city : Joi.string().trim().required(),
+//     state: Joi.string().trim().length(2).required()
+// });
+// //create preferences schema
+// const preferencesSchema = Joi.array().items(Joi.object().keys({
+//   example: Joi.string().required()
+// }));
+// const schema = Joi.object().keys({
+//     personalInfo: personalInfoSchema,
+//     preferences : preferencesSchema
+// });
+//
+// Joi.validate(userInput,schema,(err,result)=>{
+//     if(err)
+//         console.log(err)
+//     else
+//         console.log(result);
+//         console.log('Validated: Success');
+// });
+
+//TUTORIAL 19
+//EJS Templates with Express
