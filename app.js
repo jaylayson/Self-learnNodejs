@@ -468,3 +468,29 @@
 
 //TUTORIAL 19
 //EJS Templates with Express
+//USe html as template to serve DYNAMIC data
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+//
+// app.use('/public',express.static(path.join(__dirname,'static')));
+// app.set('view engine','ejs'); //set view of express
+//
+// //create views folder in project folder
+// //create index2.EJS, copy index2.html contents
+//
+// app.get('/:userQuery',(req,res)=>{
+//   //replace static file by name of file u want to render (index)
+//   //no need to specify ejs because line 477 app.set() specifies ejs
+//     res.render('index2',{data : {userQuery : req.params.userQuery,
+//                                 searchResults : ['book1', 'book2', 'book3'],
+//                               loggedIn : true,
+//                             username : 'DOMOMOMO'}}); //{} data we want to displaywithin index ejs template
+// });
+
+//TUTORIAL 20
+//MIDDLEWARE
+
+
+
+app.listen(3000);
