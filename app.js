@@ -488,9 +488,60 @@
 //                             username : 'DOMOMOMO'}}); //{} data we want to displaywithin index ejs template
 // });
 
+// app.listen(3000);
+
+
+
 //TUTORIAL 20
 //MIDDLEWARE
+//code that gets executed between user req and server
 
 
+// const express = require('express');
+// const bodyparser = require('body-parser');
+// const app = express();
+//
+// app.use(bodyparser.json());
+// // middleware that will run on all request
+// // adds property banana to request object
+// // This property will be avaible at app.get('/')
+// app.use((req,res,next)=>{ //our own middleware function. Next is to tell express,
+//   //if its local:3000/example  THIS MIDDLEWARE WILL EXECUTE
+//   //call the next method when im done
+//   //console.log(req.url, req.method);
+//     req.banana = 'banana';
+//     next();
+// });
+// // middleware that will be executed when
+// // any type of request is made to /example
+// // app.use('/example',(req,res,next)=>{
+// //     console.log('Example middleware being executed');
+// //     next();
+// // });
+// // // prints out banana property that was added
+// // // in our middleware.
+// app.get('/',(req,res)=>{
+//     console.log(req.banana);
+//     res.send('MiddleWare');
+// });
+//
+// app.listen(3000);
+
+//TUTORIAL 21
+//EXPRESS ROUTER
+//separate routes into different files
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use('/public',express.static(path.join(__dirname,'static')));
+app.set('view engine','ejs');
+
+const people = require('./routes/people');
+
+// app.get('/',(req,res)=>{
+//     res.send('MiddleWare');
+// });
+app.use('/people',people);
 
 app.listen(3000);
